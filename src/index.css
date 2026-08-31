@@ -1,0 +1,95 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Berkshire Swash', cursive;
+  --font-body: 'Manrope', sans-serif;
+  --font-italic: 'Playfair Display', serif;
+
+  --color-paper: #f5f0e6;
+  --color-ink: #33312a;
+  --color-ink-soft: #6f6552;
+
+  --color-lavender: #b99368;
+  --color-lavender-dark: #9c7850;
+  --color-lavender-deep: #7f9187;
+
+  --color-heart: #b5522e;
+  --color-heart-dark: #8f3f21;
+
+  --color-line: #e6ddc9;
+
+  --color-continent-africa: #d7a86e;
+  --color-continent-europe: #9fc2c6;
+  --color-continent-southamerica: #c98b7a;
+  --color-continent-asia: #b48f95;
+  --color-continent-oceania: #a3ac74;
+  --color-continent-northamerica: #b9b8dd;
+}
+
+html {
+  background: var(--color-paper);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--color-lavender-dark);
+}
+
+@keyframes scroll-up {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-scroll-up {
+  animation: scroll-up 32s linear infinite;
+}
+
+.animate-scroll-up:hover,
+.animate-scroll-up.is-paused {
+  animation-play-state: paused;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translateY(-8px) rotate(var(--rot, 0deg));
+  }
+}
+
+.animate-float {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out both;
+}
