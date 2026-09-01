@@ -7,6 +7,19 @@ const world = feature(worldTopology, worldTopology.objects.countries)
 
 const featureCache = new Map()
 
+// Countries whose geometry bundles in small, far-flung territory (e.g.
+// Norway + Svalbard, ~1000km further north than the mainland) get squashed
+// into an unrecognizable sliver once framed together. For icon purposes we
+// only want the main landmass, so keep just the ring with the most points
+// — a reasonable proxy for "the part of this country people mean" at this
+// size, same reasoning as the UK/Ireland split.
+function mainLandmass(geometry) {
+  if (geometry.type !== 'MultiPolygon') return geometry
+  const rings = geometry.coordinates
+  const biggest = rings.reduce((a, b) => (b[0].length > a[0].length ? b : a))
+  return { type: 'Polygon', coordinates: biggest }
+}
+
 // `id` is either an ISO 3166-1 numeric country code, or a string key from
 // islands.js for places (like individual Hawaiian islands) too small to
 // have their own country code.
@@ -18,7 +31,8 @@ function getFeature(id) {
   if (islands[key]) {
     found = { type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [islands[key]] } }
   } else {
-    found = world.features.find((f) => f.id === key) ?? null
+    const raw = world.features.find((f) => f.id === key) ?? null
+    found = raw && { ...raw, geometry: mainLandmass(raw.geometry) }
   }
 
   featureCache.set(key, found)

@@ -93,3 +93,16 @@ body {
 .animate-fade-in-up {
   animation: fade-in-up 0.5s ease-out both;
 }
+
+/* placement only applies once the itineraries grid is 3 columns (see md:grid-cols-[1fr_auto_1fr]) */
+@media (min-width: 768px) {
+  .trip-cell {
+    grid-column: var(--col);
+    grid-row: var(--row);
+  }
+
+  .photo-strip-cell {
+    grid-column: 2;
+    grid-row: 1 / span var(--row-span);
+  }
+}
