@@ -1,15 +1,26 @@
 import { geoMercator, geoPath } from 'd3-geo'
 import { feature } from 'topojson-client'
 import worldTopology from 'world-atlas/countries-110m.json'
+import { islands } from '../data/islands'
 
 const world = feature(worldTopology, worldTopology.objects.countries)
 
 const featureCache = new Map()
 
-function getFeature(numericId) {
-  const key = String(numericId)
+// `id` is either an ISO 3166-1 numeric country code, or a string key from
+// islands.js for places (like individual Hawaiian islands) too small to
+// have their own country code.
+function getFeature(id) {
+  const key = String(id)
   if (featureCache.has(key)) return featureCache.get(key)
-  const found = world.features.find((f) => f.id === key) ?? null
+
+  let found = null
+  if (islands[key]) {
+    found = { type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [islands[key]] } }
+  } else {
+    found = world.features.find((f) => f.id === key) ?? null
+  }
+
   featureCache.set(key, found)
   return found
 }
