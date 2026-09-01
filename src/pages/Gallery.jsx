@@ -13,7 +13,7 @@ function shuffled(arr) {
 // shuffled once per page load, not per render — otherwise every re-render
 // (a favorite toggle elsewhere, a filter change) would reshuffle mid-scroll
 const allPhotos = shuffled(
-  trips.flatMap((t) => t.photos.map((p) => ({ ...p, country: t.name, tripId: t.id }))),
+  trips.flatMap((t) => t.photos.map((p) => ({ country: t.name, ...p, tripId: t.id }))),
 )
 
 export default function Gallery() {

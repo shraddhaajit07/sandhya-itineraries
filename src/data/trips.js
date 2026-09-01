@@ -14,11 +14,14 @@
 // states a real per-person cost for the whole trip — don't guess a number,
 // the quick-facts card just hides the Cost row when it's null.
 //
-// `photos` is an array of { src, alt, featured }. `src` is a path under
-// /public, e.g. add the file to public/photos/morocco/1.jpg and reference
-// it as '/photos/morocco/1.jpg'. Set `featured: true` on the ones that
-// should show up in the scrolling strip on the itineraries page — every
-// photo (featured or not) still shows on the full /gallery page.
+// `photos` is an array of { src, alt, featured, country }. `src` is a path
+// under /public, e.g. add the file to public/photos/morocco/1.jpg and
+// reference it as '/photos/morocco/1.jpg'. Set `featured: true` on the ones
+// that should show up in the scrolling strip on the itineraries page —
+// every photo (featured or not) still shows on the full /gallery page.
+// `country` is optional and only needed for a multi-country trip (like
+// Scotland & Ireland) where a specific photo is only from one of them —
+// it overrides the trip's name just for that photo's gallery label.
 
 export const continents = [
   'Africa',
@@ -50,7 +53,6 @@ export const trips = [
       { src: '/photos/morocco/2.jpg', alt: 'Sahara sand dunes at Erg Chebbi' },
       { src: '/photos/morocco/3.jpg', alt: 'Group photo overlooking Aït Benhaddou' },
       { src: '/photos/morocco/4.jpg', alt: 'Riad interior with stained glass and colorful textiles' },
-      { src: '/photos/morocco/5.jpg', alt: 'Sunset over the desert camp' },
       { src: '/photos/morocco/6.jpg', alt: 'Riad courtyard with blue-trimmed arches' },
       { src: '/photos/morocco/7.jpg', alt: 'Narrow medina alleyway' },
     ],
@@ -170,10 +172,10 @@ export const trips = [
     regions: ['Dublin', 'Cork', 'Killarney', 'Doolin', 'Edinburgh', 'Isle of Skye', 'Fort William'],
     docUrl: 'https://docs.google.com/document/d/11m1RO50QEgSlJCSRKwDLbSoZlR9BdPtl_xCj45PD21s/preview',
     photos: [
-      { src: '/photos/scotland-ireland/1.jpg', alt: 'Glenshee Ski Centre' },
-      { src: '/photos/scotland-ireland/2.jpg', alt: 'Edinburgh Castle on the hill' },
-      { src: '/photos/scotland-ireland/3.jpg', alt: 'Colorful buildings on Victoria Street, Edinburgh' },
-      { src: '/photos/scotland-ireland/4.jpg', alt: 'Irish coastal cliffs and turquoise water' },
+      { src: '/photos/scotland-ireland/1.jpg', alt: 'Glenshee Ski Centre', country: 'Scotland' },
+      { src: '/photos/scotland-ireland/2.jpg', alt: 'Edinburgh Castle on the hill', country: 'Scotland' },
+      { src: '/photos/scotland-ireland/3.jpg', alt: 'Colorful buildings on Victoria Street, Edinburgh', country: 'Scotland' },
+      { src: '/photos/scotland-ireland/4.jpg', alt: 'Irish coastal cliffs and turquoise water', country: 'Ireland' },
     ],
   },
   {
