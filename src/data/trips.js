@@ -13,6 +13,12 @@
 // `costPerPerson`/`partySize` are left as `null` unless the doc actually
 // states a real per-person cost for the whole trip — don't guess a number,
 // the quick-facts card just hides the Cost row when it's null.
+//
+// `photos` is an array of { src, alt, featured }. `src` is a path under
+// /public, e.g. add the file to public/photos/morocco/1.jpg and reference
+// it as '/photos/morocco/1.jpg'. Set `featured: true` on the ones that
+// should show up in the scrolling strip on the itineraries page — every
+// photo (featured or not) still shows on the full /gallery page.
 
 export const continents = [
   'Africa',

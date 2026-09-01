@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 const links = [
   { to: '/', label: 'about', end: true },
   { to: '/itineraries', label: 'itineraries' },
+  { to: '/gallery', label: 'gallery' },
 ]
 
 export default function NavBar() {
