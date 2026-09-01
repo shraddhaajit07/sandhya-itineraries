@@ -49,7 +49,7 @@ export const trips = [
     terrain: 'Cities, coastline, countryside',
     vibe: 'Food-focused, walkable, lively',
     regions: ['Madrid', 'Seville', 'Granada', 'Barcelona'],
-    docUrl: '',
+    docUrl: 'https://docs.google.com/document/d/1aXb5Hh9h2XTUCfgqZozLPcF8pvQz1AZW/preview',
     photos: [],
   },
   {
