@@ -18,7 +18,7 @@
 // under /public, e.g. add the file to public/photos/morocco/1.jpg and
 // reference it as '/photos/morocco/1.jpg'. Set `featured: true` on the ones
 // that should show up in the scrolling strip on the itineraries page —
-// every photo (featured or not) still shows on the full /gallery page.
+// those move out of the /gallery grid rather than showing in both places.
 // `country` is optional and only needed for a multi-country trip (like
 // Scotland & Ireland) where a specific photo is only from one of them —
 // it overrides the trip's name just for that photo's gallery label.
@@ -50,7 +50,7 @@ export const trips = [
     docUrl: 'https://docs.google.com/document/d/1fDWkxiM6Rr5Iu9AQ4ZLnCWNWOg5bqW0r/preview',
     photos: [
       { src: '/photos/morocco/1.jpg', alt: 'View of the Sahara dunes from a desert camp tent' },
-      { src: '/photos/morocco/2.jpg', alt: 'Sahara sand dunes at Erg Chebbi' },
+      { src: '/photos/morocco/2.jpg', alt: 'Sahara sand dunes at Erg Chebbi', featured: true },
       { src: '/photos/morocco/3.jpg', alt: 'Group photo overlooking Aït Benhaddou' },
       { src: '/photos/morocco/4.jpg', alt: 'Riad interior with stained glass and colorful textiles' },
       { src: '/photos/morocco/6.jpg', alt: 'Riad courtyard with blue-trimmed arches' },
@@ -124,7 +124,7 @@ export const trips = [
     vibe: 'Self-drive adventure, natural wonders, photography stops',
     regions: ['Reykjavík', 'Snæfellsnes', 'Golden Circle', 'South Coast', 'Diamond Circle / Akureyri'],
     docUrl: 'https://docs.google.com/document/d/11Wn6UlPufhjAStrmsfUyrXV1H-e4kiUuhgwbWuvTH2g/preview',
-    photos: [{ src: '/photos/iceland/1.jpg', alt: 'Standing behind Seljalandsfoss waterfall' }],
+    photos: [{ src: '/photos/iceland/1.jpg', alt: 'Standing behind Seljalandsfoss waterfall', featured: true }],
   },
   {
     id: 'tanzania',
@@ -148,7 +148,7 @@ export const trips = [
       { src: '/photos/tanzania/4.jpg', alt: 'Wildebeest migration river crossing' },
       { src: '/photos/tanzania/5.jpg', alt: 'Giraffe on the savanna' },
       { src: '/photos/tanzania/6.jpg', alt: 'Safari jeeps in the Serengeti' },
-      { src: '/photos/tanzania/7.jpg', alt: 'Elephant herd' },
+      { src: '/photos/tanzania/7.jpg', alt: 'Elephant herd', featured: true },
       { src: '/photos/tanzania/8.jpg', alt: 'Lodge pool overlooking the savanna' },
       { src: '/photos/tanzania/9.jpg', alt: 'Serengeti National Park entrance sign' },
       { src: '/photos/tanzania/10.jpg', alt: 'Land Rover with Tanzania plates' },
@@ -172,7 +172,7 @@ export const trips = [
     regions: ['Dublin', 'Cork', 'Killarney', 'Doolin', 'Edinburgh', 'Isle of Skye', 'Fort William'],
     docUrl: 'https://docs.google.com/document/d/11m1RO50QEgSlJCSRKwDLbSoZlR9BdPtl_xCj45PD21s/preview',
     photos: [
-      { src: '/photos/scotland-ireland/1.jpg', alt: 'Glenshee Ski Centre', country: 'Scotland' },
+      { src: '/photos/scotland-ireland/1.jpg', alt: 'Glenshee Ski Centre', country: 'Scotland', featured: true },
       { src: '/photos/scotland-ireland/2.jpg', alt: 'Edinburgh Castle on the hill', country: 'Scotland' },
       { src: '/photos/scotland-ireland/3.jpg', alt: 'Colorful buildings on Victoria Street, Edinburgh', country: 'Scotland' },
       { src: '/photos/scotland-ireland/4.jpg', alt: 'Irish coastal cliffs and turquoise water', country: 'Ireland' },
@@ -228,7 +228,10 @@ export const trips = [
     vibe: 'All-inclusive resort, relaxed with active excursions',
     regions: ['Montego Bay', 'Ocho Rios', 'Negril'],
     docUrl: 'https://docs.google.com/document/d/104TgTrwBmXMe_lvQfILgnX6_jN7VeUMeNT85-y19dLw/preview',
-    photos: [{ src: '/photos/jamaica/1.jpg', alt: "Cliff jumping at Rick's Cafe, Negril" }],
+    photos: [
+      { src: '/photos/jamaica/1.jpg', alt: "Cliff jumping at Rick's Cafe, Negril" },
+      { src: '/photos/jamaica/2.jpg', alt: 'River tubing through the jungle', featured: true },
+    ],
   },
   {
     id: 'oahu',
@@ -279,7 +282,7 @@ export const trips = [
     vibe: 'Active exploration: hiking, snorkeling, cultural visit, scenic tour',
     regions: ['Poipu', 'Waimea Canyon', 'Wailua', 'Hanalei'],
     docUrl: 'https://docs.google.com/document/d/1Ju0jAizJA8Phc7bRDqrJzuqfLT30LuaFYd-e0vQjj4g/preview',
-    photos: [{ src: '/photos/kauai/1.jpg', alt: 'River tubing through the jungle' }],
+    photos: [],
   },
   {
     id: 'bali',

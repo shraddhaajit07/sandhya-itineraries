@@ -11,9 +11,13 @@ function shuffled(arr) {
 }
 
 // shuffled once per page load, not per render — otherwise every re-render
-// (a favorite toggle elsewhere, a filter change) would reshuffle mid-scroll
+// (a favorite toggle elsewhere, a filter change) would reshuffle mid-scroll.
+// Featured photos are excluded here since they already live in the
+// scrolling strip on the itineraries page — no need to show them twice.
 const allPhotos = shuffled(
-  trips.flatMap((t) => t.photos.map((p) => ({ country: t.name, ...p, tripId: t.id }))),
+  trips
+    .flatMap((t) => t.photos.map((p) => ({ country: t.name, ...p, tripId: t.id })))
+    .filter((p) => !p.featured),
 )
 
 export default function Gallery() {
