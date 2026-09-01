@@ -39,14 +39,36 @@ export default function PhotoStrip({ trips }) {
   const duration = Math.max(20, slots.length * 4)
 
   return (
-    <div className="relative mx-auto h-[520px] w-40 overflow-hidden rounded-2xl bg-lavender/30 sm:w-48 md:h-[620px]">
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-paper to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-t from-paper to-transparent" />
-      <div className="animate-scroll-up flex flex-col gap-3 p-3" style={{ animationDuration: `${duration}s` }}>
-        {loop.map((slot, i) => (
-          <Tile key={i} photo={slot.photo} i={i} />
-        ))}
+    <div className="relative mx-auto w-fit px-3">
+      <Trim side="left" />
+      <Trim side="right" />
+      <div className="relative h-[580px] w-48 overflow-hidden rounded-2xl bg-lavender/30 sm:w-60 md:h-[700px]">
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-paper to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-t from-paper to-transparent" />
+        <div className="animate-scroll-up flex flex-col gap-3 p-3" style={{ animationDuration: `${duration}s` }}>
+          {loop.map((slot, i) => (
+            <Tile key={i} photo={slot.photo} i={i} />
+          ))}
+        </div>
       </div>
     </div>
+  )
+}
+
+// a little strand of beaded trim down each side, like it's been sewn on
+function Trim({ side }) {
+  return (
+    <div
+      className={`pointer-events-none absolute top-1 bottom-1 w-2.5 rounded-full ${
+        side === 'left' ? 'left-0' : 'right-0'
+      }`}
+      style={{
+        backgroundImage:
+          'radial-gradient(circle, var(--color-heart) 3px, transparent 3.4px), radial-gradient(circle, var(--color-lavender-deep) 3px, transparent 3.4px)',
+        backgroundSize: '100% 30px, 100% 30px',
+        backgroundPosition: '0 0, 0 15px',
+        backgroundRepeat: 'repeat-y',
+      }}
+    />
   )
 }
