@@ -176,6 +176,7 @@ export const trips = [
       { src: '/photos/scotland-ireland/2.jpg', alt: 'Edinburgh Castle on the hill', country: 'Scotland' },
       { src: '/photos/scotland-ireland/3.jpg', alt: 'Colorful buildings on Victoria Street, Edinburgh', country: 'Scotland' },
       { src: '/photos/scotland-ireland/4.jpg', alt: 'Irish coastal cliffs and turquoise water', country: 'Ireland' },
+      { src: '/photos/scotland-ireland/5.jpg', alt: 'Dramatic cliffs along the Ring of Kerry', country: 'Ireland' },
     ],
   },
   {
