@@ -39,29 +39,29 @@ export default function PhotoStrip({ trips }) {
   const duration = Math.max(20, slots.length * 4)
 
   return (
-    <div className="relative mx-auto w-fit px-3">
+    <div className="relative mx-auto h-[580px] w-48 overflow-hidden rounded-2xl bg-lavender/30 sm:w-60 md:h-[700px]">
+      <div className="animate-scroll-up flex flex-col gap-3 p-3" style={{ animationDuration: `${duration}s` }}>
+        {loop.map((slot, i) => (
+          <Tile key={i} photo={slot.photo} i={i} />
+        ))}
+      </div>
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-paper to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-t from-paper to-transparent" />
       <Trim side="left" />
       <Trim side="right" />
-      <div className="relative h-[580px] w-48 overflow-hidden rounded-2xl bg-lavender/30 sm:w-60 md:h-[700px]">
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-paper to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-16 bg-gradient-to-t from-paper to-transparent" />
-        <div className="animate-scroll-up flex flex-col gap-3 p-3" style={{ animationDuration: `${duration}s` }}>
-          {loop.map((slot, i) => (
-            <Tile key={i} photo={slot.photo} i={i} />
-          ))}
-        </div>
-      </div>
     </div>
   )
 }
 
 const STARS = Array.from({ length: 60 }, (_, i) => (i % 2 === 0 ? '✦' : '✧'))
 
-// a strand of stamped stars down each side, like a filmstrip border
+// a strand of stamped stars sitting right on the strip's own edge — it's a
+// sibling of the scrolling photo column, not part of it, so it stays put
+// while the photos scroll behind it
 function Trim({ side }) {
   return (
     <div
-      className={`pointer-events-none absolute top-1 bottom-1 flex w-5 flex-col items-center gap-2 overflow-hidden text-lavender-dark/70 ${
+      className={`pointer-events-none absolute top-0 bottom-0 z-20 flex w-5 flex-col items-center gap-2 overflow-hidden text-lavender-dark/70 ${
         side === 'left' ? 'left-0' : 'right-0'
       }`}
     >
