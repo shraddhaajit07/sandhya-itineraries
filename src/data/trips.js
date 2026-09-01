@@ -245,7 +245,7 @@ export const trips = [
     vibe: 'Beach days, snorkeling, cultural sites, scenic drives',
     regions: ['Honolulu / Waikiki', 'Hanauma Bay', 'North Shore', 'Kailua / Kaneohe'],
     docUrl: 'https://docs.google.com/document/d/1yEe5Bq8ZlA857aBOpTFfky0FpgRNpXV7/preview',
-    photos: [],
+    photos: [{ src: '/photos/oahu/1.jpg', alt: 'Looking through a scavenger hunt sheet outdoors' }],
   },
   {
     id: 'maui',
@@ -280,6 +280,23 @@ export const trips = [
     regions: ['Poipu', 'Waimea Canyon', 'Wailua', 'Hanalei'],
     docUrl: 'https://docs.google.com/document/d/1Ju0jAizJA8Phc7bRDqrJzuqfLT30LuaFYd-e0vQjj4g/preview',
     photos: [{ src: '/photos/kauai/1.jpg', alt: 'River tubing through the jungle' }],
+  },
+  {
+    id: 'bali',
+    name: 'Bali',
+    continent: 'Asia',
+    countryCodes: ['bali'],
+    season: 'April',
+    days: 7,
+    costPerPerson: null,
+    partySize: null,
+    flyInOut: 'Denpasar → Denpasar',
+    climate: 'Warm, tropical, humid',
+    terrain: 'Rice terraces, volcanoes, beaches, temples',
+    vibe: 'Relaxed, cultural, rice paddies and temples',
+    regions: ['Ubud', 'Seminyak', 'Uluwatu'],
+    docUrl: '',
+    photos: [{ src: '/photos/bali/1.jpg', alt: 'Balinese villa porch overlooking rice paddies' }],
   },
 ]
 
