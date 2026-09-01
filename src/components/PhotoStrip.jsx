@@ -55,20 +55,21 @@ export default function PhotoStrip({ trips }) {
   )
 }
 
-// a little strand of beaded trim down each side, like it's been sewn on
+const STARS = Array.from({ length: 60 }, (_, i) => (i % 2 === 0 ? '✦' : '✧'))
+
+// a strand of stamped stars down each side, like a filmstrip border
 function Trim({ side }) {
   return (
     <div
-      className={`pointer-events-none absolute top-1 bottom-1 w-2.5 rounded-full ${
+      className={`pointer-events-none absolute top-1 bottom-1 flex w-5 flex-col items-center gap-2 overflow-hidden text-lavender-dark/70 ${
         side === 'left' ? 'left-0' : 'right-0'
       }`}
-      style={{
-        backgroundImage:
-          'radial-gradient(circle, var(--color-heart) 3px, transparent 3.4px), radial-gradient(circle, var(--color-lavender-deep) 3px, transparent 3.4px)',
-        backgroundSize: '100% 30px, 100% 30px',
-        backgroundPosition: '0 0, 0 15px',
-        backgroundRepeat: 'repeat-y',
-      }}
-    />
+    >
+      {STARS.map((s, i) => (
+        <span key={i} className={i % 2 === 0 ? 'text-xs' : 'text-[9px]'}>
+          {s}
+        </span>
+      ))}
+    </div>
   )
 }
