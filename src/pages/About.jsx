@@ -4,17 +4,20 @@ import { trips } from '../data/trips'
 const countryCount = new Set(trips.flatMap((t) => t.countryCodes)).size
 const continentCount = new Set(trips.map((t) => t.continent)).size
 
-// Three rounds of "percentage-scattered small glyphs" didn't read as
-// present at all — depending on a guessed-at empty margin is fragile, and
-// margin width varies a lot with actual window size. These are anchored to
-// the four corners of the viewport instead (not percentages of content),
-// oversized, and deliberately bleed off-screen at the edges — that part
-// stays visible no matter how wide or narrow the window actually is.
-const CORNER_MOTIFS = [
-  { s: '✦', corner: { top: '90px', left: '20px' }, size: '90px', color: 'text-lavender', opacity: 0.6, rot: -15 },
-  { s: '◈', corner: { top: '90px', right: '20px' }, size: '80px', color: 'text-heart', opacity: 0.55, rot: 12 },
-  { s: '✈', corner: { bottom: '20px', left: '20px' }, size: '85px', color: 'text-lavender-deep', opacity: 0.55, rot: -25 },
-  { s: '✦', corner: { bottom: '20px', right: '20px' }, size: '90px', color: 'text-lavender', opacity: 0.6, rot: 18 },
+// Scattered down both side margins (not just the 4 corners) so they read as
+// texture around the page rather than a frame competing with the photo and
+// card for attention. Kept out of the photo/card/button columns entirely —
+// percentage positions here are all in the left/right margins outside that
+// center content, at varying heights, alternating sides.
+const MOTIFS = [
+  { s: '✦', top: '5%', left: '2%', size: '60px', color: 'text-lavender', opacity: 0.55, rot: -15 },
+  { s: '◈', top: '12%', right: '2%', size: '52px', color: 'text-heart', opacity: 0.5, rot: 12 },
+  { s: '✈', top: '30%', left: '1.5%', size: '58px', color: 'text-lavender-deep', opacity: 0.5, rot: -25 },
+  { s: '✦', top: '33%', right: '1.5%', size: '56px', color: 'text-lavender', opacity: 0.55, rot: 18 },
+  { s: '◈', top: '56%', left: '2%', size: '54px', color: 'text-heart', opacity: 0.5, rot: 8 },
+  { s: '✈', top: '58%', right: '2%', size: '60px', color: 'text-lavender-deep', opacity: 0.5, rot: -10 },
+  { s: '✦', top: '85%', left: '3%', size: '56px', color: 'text-lavender', opacity: 0.55, rot: 20 },
+  { s: '◈', top: '88%', right: '3%', size: '52px', color: 'text-heart', opacity: 0.5, rot: -14 },
 ]
 
 export default function About() {
@@ -25,13 +28,22 @@ export default function About() {
           it was invisible in every real browser, not just my screenshot
           tool. Fix: leave this layer at the default stack level and instead
           give the real content an explicit z-10 below, so it's guaranteed
-          to paint above the motifs no matter what. */}
-      <div className="pointer-events-none fixed inset-0" aria-hidden="true">
-        {CORNER_MOTIFS.map((m, i) => (
+          to paint above the motifs no matter what. `absolute` (not `fixed`)
+          so these scroll along with the page instead of pinning to the
+          viewport. */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        {MOTIFS.map((m, i) => (
           <span
             key={i}
             className={`absolute leading-none ${m.color}`}
-            style={{ ...m.corner, fontSize: m.size, opacity: m.opacity, transform: `rotate(${m.rot}deg)` }}
+            style={{
+              top: m.top,
+              left: m.left,
+              right: m.right,
+              fontSize: m.size,
+              opacity: m.opacity,
+              transform: `rotate(${m.rot}deg)`,
+            }}
           >
             {m.s}
           </span>
