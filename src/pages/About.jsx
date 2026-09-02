@@ -4,20 +4,20 @@ import { trips } from '../data/trips'
 const countryCount = new Set(trips.flatMap((t) => t.countryCodes)).size
 const continentCount = new Set(trips.map((t) => t.continent)).size
 
-// Scattered down both side margins (not just the 4 corners) so they read as
-// texture around the page rather than a frame competing with the photo and
-// card for attention. Kept out of the photo/card/button columns entirely —
-// percentage positions here are all in the left/right margins outside that
-// center content, at varying heights, alternating sides.
+// Stars and diamonds only (planes dropped). Spread down both side margins
+// plus the empty band below the button at the bottom of the page, instead
+// of confined to just the two side strips — still kept clear of the
+// photo/card/button columns so they read as texture, not a frame competing
+// with the actual content for attention.
 const MOTIFS = [
   { s: '✦', top: '5%', left: '2%', size: '60px', color: 'text-lavender', opacity: 0.55, rot: -15 },
   { s: '◈', top: '12%', right: '2%', size: '52px', color: 'text-heart', opacity: 0.5, rot: 12 },
-  { s: '✈', top: '30%', left: '1.5%', size: '58px', color: 'text-lavender-deep', opacity: 0.5, rot: -25 },
+  { s: '◈', top: '28%', left: '1.5%', size: '54px', color: 'text-lavender-deep', opacity: 0.5, rot: -25 },
   { s: '✦', top: '33%', right: '1.5%', size: '56px', color: 'text-lavender', opacity: 0.55, rot: 18 },
   { s: '◈', top: '56%', left: '2%', size: '54px', color: 'text-heart', opacity: 0.5, rot: 8 },
-  { s: '✈', top: '58%', right: '2%', size: '60px', color: 'text-lavender-deep', opacity: 0.5, rot: -10 },
-  { s: '✦', top: '85%', left: '3%', size: '56px', color: 'text-lavender', opacity: 0.55, rot: 20 },
-  { s: '◈', top: '88%', right: '3%', size: '52px', color: 'text-heart', opacity: 0.5, rot: -14 },
+  { s: '✦', top: '58%', right: '2%', size: '58px', color: 'text-lavender-deep', opacity: 0.5, rot: -10 },
+  { s: '✦', top: '92%', left: '18%', size: '52px', color: 'text-lavender', opacity: 0.55, rot: 20 },
+  { s: '◈', top: '92%', right: '18%', size: '50px', color: 'text-heart', opacity: 0.5, rot: -14 },
 ]
 
 export default function About() {
