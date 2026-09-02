@@ -4,42 +4,41 @@ import { trips } from '../data/trips'
 const countryCount = new Set(trips.flatMap((t) => t.countryCodes)).size
 const continentCount = new Set(trips.map((t) => t.continent)).size
 
-// scattered background motifs, echoing the floating stars already next to
-// the photo. Bold and plentiful on purpose (near-solid color, bigger sizes)
-// after a faint first pass read as basically invisible. Positions are kept
-// to the margins around the photo/card/button rather than plain percentages
-// across the whole page — a percentage grid put a third of these directly
-// behind the card and the CTA button, which are opaque enough to fully
-// hide whatever's rendered underneath them.
-const MOTIFS = [
-  { s: '✦', top: '4%', left: '1%', size: 'text-3xl', color: 'text-lavender', rot: -12 },
-  { s: '✈', top: '7%', left: '96%', size: 'text-3xl', color: 'text-lavender-deep', rot: 20 },
-  { s: '✦', top: '22%', left: '97%', size: 'text-2xl', color: 'text-heart', rot: 8 },
-  { s: '◈', top: '40%', left: '1%', size: 'text-2xl', color: 'text-lavender-deep', rot: -6 },
-  { s: '✦', top: '58%', left: '2%', size: 'text-2xl', color: 'text-heart', rot: 15 },
-  { s: '✈', top: '62%', left: '95%', size: 'text-3xl', color: 'text-lavender', rot: -18 },
-  { s: '✦', top: '78%', left: '96%', size: 'text-2xl', color: 'text-lavender-deep', rot: 4 },
-  { s: '◈', top: '32%', left: '1%', size: 'text-xl', color: 'text-heart', rot: 10 },
-  { s: '✦', top: '90%', left: '3%', size: 'text-2xl', color: 'text-lavender', rot: -8 },
-  { s: '◈', top: '92%', left: '92%', size: 'text-xl', color: 'text-lavender-deep', rot: 14 },
+// Three rounds of "percentage-scattered small glyphs" didn't read as
+// present at all — depending on a guessed-at empty margin is fragile, and
+// margin width varies a lot with actual window size. These are anchored to
+// the four corners of the viewport instead (not percentages of content),
+// oversized, and deliberately bleed off-screen at the edges — that part
+// stays visible no matter how wide or narrow the window actually is.
+const CORNER_MOTIFS = [
+  { s: '✦', corner: { top: '90px', left: '20px' }, size: '90px', color: 'text-lavender', opacity: 0.6, rot: -15 },
+  { s: '◈', corner: { top: '90px', right: '20px' }, size: '80px', color: 'text-heart', opacity: 0.55, rot: 12 },
+  { s: '✈', corner: { bottom: '20px', left: '20px' }, size: '85px', color: 'text-lavender-deep', opacity: 0.55, rot: -25 },
+  { s: '✦', corner: { bottom: '20px', right: '20px' }, size: '90px', color: 'text-lavender', opacity: 0.6, rot: 18 },
 ]
 
 export default function About() {
   return (
     <div className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        {MOTIFS.map((m, i) => (
+      {/* z-index:-10 here was the actual bug this whole time — negative
+          z-index renders BEHIND the page's own opaque body background, so
+          it was invisible in every real browser, not just my screenshot
+          tool. Fix: leave this layer at the default stack level and instead
+          give the real content an explicit z-10 below, so it's guaranteed
+          to paint above the motifs no matter what. */}
+      <div className="pointer-events-none fixed inset-0" aria-hidden="true">
+        {CORNER_MOTIFS.map((m, i) => (
           <span
             key={i}
-            className={`absolute ${m.size} ${m.color}`}
-            style={{ top: m.top, left: m.left, transform: `rotate(${m.rot}deg)` }}
+            className={`absolute leading-none ${m.color}`}
+            style={{ ...m.corner, fontSize: m.size, opacity: m.opacity, transform: `rotate(${m.rot}deg)` }}
           >
             {m.s}
           </span>
         ))}
       </div>
 
-      <div className="mx-auto max-w-5xl px-6 pt-16 pb-28 sm:px-10">
+      <div className="relative z-10 mx-auto max-w-5xl px-6 pt-16 pb-28 sm:px-10">
         <div className="grid items-start justify-center gap-16 md:grid-cols-[auto_minmax(0,32rem)]">
           {/* photo + contacts */}
           <div className="mx-auto flex w-64 shrink-0 flex-col items-center gap-6 sm:w-72">
