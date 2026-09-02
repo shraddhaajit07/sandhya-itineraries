@@ -5,17 +5,23 @@ const countryCount = new Set(trips.flatMap((t) => t.countryCodes)).size
 const continentCount = new Set(trips.map((t) => t.continent)).size
 
 // scattered background motifs, echoing the floating stars already next to
-// the photo — kept faint (opacity via /20-/25) so they read as texture,
-// not decoration competing with the actual content
+// the photo. Bold and plentiful on purpose (near-solid color, bigger sizes)
+// after a faint first pass read as basically invisible. Positions are kept
+// to the margins around the photo/card/button rather than plain percentages
+// across the whole page — a percentage grid put a third of these directly
+// behind the card and the CTA button, which are opaque enough to fully
+// hide whatever's rendered underneath them.
 const MOTIFS = [
-  { s: '✦', top: '8%', left: '6%', size: 'text-2xl', color: 'text-lavender/70', rot: -12 },
-  { s: '✈', top: '15%', left: '90%', size: 'text-xl', color: 'text-lavender-deep/70', rot: 20 },
-  { s: '✦', top: '35%', left: '95%', size: 'text-sm', color: 'text-heart/60', rot: 8 },
-  { s: '◈', top: '52%', left: '3%', size: 'text-base', color: 'text-lavender-deep/60', rot: -6 },
-  { s: '✦', top: '70%', left: '9%', size: 'text-lg', color: 'text-heart/50', rot: 15 },
-  { s: '✈', top: '80%', left: '87%', size: 'text-lg', color: 'text-lavender/70', rot: -18 },
-  { s: '✦', top: '92%', left: '48%', size: 'text-sm', color: 'text-lavender-deep/60', rot: 4 },
-  { s: '◈', top: '4%', left: '46%', size: 'text-sm', color: 'text-lavender/70', rot: 10 },
+  { s: '✦', top: '4%', left: '1%', size: 'text-3xl', color: 'text-lavender', rot: -12 },
+  { s: '✈', top: '7%', left: '96%', size: 'text-3xl', color: 'text-lavender-deep', rot: 20 },
+  { s: '✦', top: '22%', left: '97%', size: 'text-2xl', color: 'text-heart', rot: 8 },
+  { s: '◈', top: '40%', left: '1%', size: 'text-2xl', color: 'text-lavender-deep', rot: -6 },
+  { s: '✦', top: '58%', left: '2%', size: 'text-2xl', color: 'text-heart', rot: 15 },
+  { s: '✈', top: '62%', left: '95%', size: 'text-3xl', color: 'text-lavender', rot: -18 },
+  { s: '✦', top: '78%', left: '96%', size: 'text-2xl', color: 'text-lavender-deep', rot: 4 },
+  { s: '◈', top: '32%', left: '1%', size: 'text-xl', color: 'text-heart', rot: 10 },
+  { s: '✦', top: '90%', left: '3%', size: 'text-2xl', color: 'text-lavender', rot: -8 },
+  { s: '◈', top: '92%', left: '92%', size: 'text-xl', color: 'text-lavender-deep', rot: 14 },
 ]
 
 export default function About() {
