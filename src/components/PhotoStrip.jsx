@@ -11,17 +11,22 @@ function Placeholder({ label, i }) {
   )
 }
 
-function Tile({ photo, i }) {
+function Tile({ photo, label, i }) {
   if (!photo) return <Placeholder label="add a photo!" i={i} />
   return (
-    <img
-      src={photo.src}
-      alt={photo.alt ?? ''}
-      className="aspect-[4/5] w-full rounded-lg object-cover shadow-sm"
-      onError={(e) => {
-        e.currentTarget.style.display = 'none'
-      }}
-    />
+    <div className="relative">
+      <img
+        src={photo.src}
+        alt={photo.alt ?? ''}
+        className="aspect-[4/5] w-full rounded-lg object-cover shadow-sm"
+        onError={(e) => {
+          e.currentTarget.style.display = 'none'
+        }}
+      />
+      <span className="absolute right-1.5 bottom-1.5 rounded bg-ink/60 px-1.5 py-0.5 text-[11px] leading-none text-paper lowercase backdrop-blur-sm">
+        {label}
+      </span>
+    </div>
   )
 }
 
@@ -29,7 +34,9 @@ function Tile({ photo, i }) {
 // `{ src, alt, featured: true }` in trips.js to put it in the strip.
 // Everything else (featured or not) still shows on the full /gallery page.
 export default function PhotoStrip({ trips }) {
-  const featured = trips.flatMap((t) => t.photos.filter((p) => p.featured).map((p) => ({ photo: p, label: t.name })))
+  const featured = trips.flatMap((t) =>
+    t.photos.filter((p) => p.featured).map((p) => ({ photo: p, label: p.country || t.name })),
+  )
 
   const slots = featured.length ? featured : trips.map((t) => ({ photo: null, label: t.name }))
   const loop = [...slots, ...slots]
@@ -42,7 +49,7 @@ export default function PhotoStrip({ trips }) {
     <div className="relative mx-auto h-[580px] w-48 overflow-hidden rounded-2xl bg-lavender/30 sm:w-60 md:h-[700px]">
       <div className="animate-scroll-up flex flex-col gap-3 p-3" style={{ animationDuration: `${duration}s` }}>
         {loop.map((slot, i) => (
-          <Tile key={i} photo={slot.photo} i={i} />
+          <Tile key={i} photo={slot.photo} label={slot.label} i={i} />
         ))}
       </div>
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-paper to-transparent" />
