@@ -4,20 +4,32 @@ import { trips } from '../data/trips'
 const countryCount = new Set(trips.flatMap((t) => t.countryCodes)).size
 const continentCount = new Set(trips.map((t) => t.continent)).size
 
-// Stars and diamonds only (planes dropped). Spread down both side margins
-// plus the empty band below the button at the bottom of the page, instead
-// of confined to just the two side strips — still kept clear of the
-// photo/card/button columns so they read as texture, not a frame competing
-// with the actual content for attention.
+// Stars and diamonds scattered across the whole page — including behind the
+// intro card, whose background is only 20% opaque, so shapes underneath
+// show through softly rather than being hidden. Positions are deliberately
+// irregular (no grid, no mirroring) so it reads as scatter, not pattern.
+// Opacity stays low-ish since several sit behind text.
 const MOTIFS = [
-  { s: '✦', top: '5%', left: '2%', size: '60px', color: 'text-lavender', opacity: 0.55, rot: -15 },
-  { s: '◈', top: '12%', right: '2%', size: '52px', color: 'text-heart', opacity: 0.5, rot: 12 },
-  { s: '◈', top: '28%', left: '1.5%', size: '54px', color: 'text-lavender-deep', opacity: 0.5, rot: -25 },
-  { s: '✦', top: '33%', right: '1.5%', size: '56px', color: 'text-lavender', opacity: 0.55, rot: 18 },
-  { s: '◈', top: '56%', left: '2%', size: '54px', color: 'text-heart', opacity: 0.5, rot: 8 },
-  { s: '✦', top: '58%', right: '2%', size: '58px', color: 'text-lavender-deep', opacity: 0.5, rot: -10 },
-  { s: '✦', top: '92%', left: '18%', size: '52px', color: 'text-lavender', opacity: 0.55, rot: 20 },
-  { s: '◈', top: '92%', right: '18%', size: '50px', color: 'text-heart', opacity: 0.5, rot: -14 },
+  { s: '✦', top: '3%', left: '7%', size: '52px', color: 'text-lavender', opacity: 0.5, rot: -15 },
+  { s: '◈', top: '9%', left: '31%', size: '38px', color: 'text-heart', opacity: 0.4, rot: 12 },
+  { s: '✦', top: '5%', left: '54%', size: '44px', color: 'text-lavender-deep', opacity: 0.4, rot: 22 },
+  { s: '◈', top: '13%', left: '77%', size: '50px', color: 'text-lavender', opacity: 0.45, rot: -8 },
+  { s: '✦', top: '2%', left: '93%', size: '40px', color: 'text-heart', opacity: 0.45, rot: 30 },
+  { s: '◈', top: '23%', left: '16%', size: '46px', color: 'text-lavender-deep', opacity: 0.45, rot: -22 },
+  { s: '✦', top: '27%', left: '42%', size: '36px', color: 'text-heart', opacity: 0.35, rot: 10 },
+  { s: '◈', top: '19%', left: '64%', size: '42px', color: 'text-lavender', opacity: 0.35, rot: -12 },
+  { s: '✦', top: '31%', left: '89%', size: '54px', color: 'text-lavender-deep', opacity: 0.5, rot: 16 },
+  { s: '◈', top: '44%', left: '4%', size: '48px', color: 'text-heart', opacity: 0.45, rot: -18 },
+  { s: '✦', top: '39%', left: '26%', size: '40px', color: 'text-lavender', opacity: 0.4, rot: 25 },
+  { s: '◈', top: '47%', left: '58%', size: '38px', color: 'text-lavender-deep', opacity: 0.35, rot: -6 },
+  { s: '✦', top: '54%', left: '82%', size: '46px', color: 'text-heart', opacity: 0.45, rot: 14 },
+  { s: '◈', top: '64%', left: '13%', size: '52px', color: 'text-lavender', opacity: 0.5, rot: -20 },
+  { s: '✦', top: '70%', left: '48%', size: '42px', color: 'text-lavender-deep', opacity: 0.4, rot: 8 },
+  { s: '◈', top: '74%', left: '91%', size: '44px', color: 'text-heart', opacity: 0.45, rot: -26 },
+  { s: '✦', top: '87%', left: '21%', size: '48px', color: 'text-lavender-deep', opacity: 0.45, rot: 18 },
+  { s: '◈', top: '90%', left: '68%', size: '40px', color: 'text-lavender', opacity: 0.4, rot: -10 },
+  { s: '✦', top: '95%', left: '39%', size: '44px', color: 'text-heart', opacity: 0.45, rot: 24 },
+  { s: '◈', top: '93%', left: '6%', size: '38px', color: 'text-lavender-deep', opacity: 0.4, rot: -16 },
 ]
 
 export default function About() {
