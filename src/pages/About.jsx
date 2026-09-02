@@ -8,28 +8,21 @@ const continentCount = new Set(trips.map((t) => t.continent)).size
 // intro card, whose background is only 20% opaque, so shapes underneath
 // show through softly rather than being hidden. Positions are deliberately
 // irregular (no grid, no mirroring) so it reads as scatter, not pattern.
-// Opacity stays low-ish since several sit behind text.
+// Opacity varies widely (0.15–0.5) so they sit at different depths instead
+// of reading as one uniform layer competing with the content.
 const MOTIFS = [
-  { s: '✦', top: '3%', left: '7%', size: '52px', color: 'text-lavender', opacity: 0.5, rot: -15 },
-  { s: '◈', top: '9%', left: '31%', size: '38px', color: 'text-heart', opacity: 0.4, rot: 12 },
-  { s: '✦', top: '5%', left: '54%', size: '44px', color: 'text-lavender-deep', opacity: 0.4, rot: 22 },
-  { s: '◈', top: '13%', left: '77%', size: '50px', color: 'text-lavender', opacity: 0.45, rot: -8 },
-  { s: '✦', top: '2%', left: '93%', size: '40px', color: 'text-heart', opacity: 0.45, rot: 30 },
-  { s: '◈', top: '23%', left: '16%', size: '46px', color: 'text-lavender-deep', opacity: 0.45, rot: -22 },
-  { s: '✦', top: '27%', left: '42%', size: '36px', color: 'text-heart', opacity: 0.35, rot: 10 },
-  { s: '◈', top: '19%', left: '64%', size: '42px', color: 'text-lavender', opacity: 0.35, rot: -12 },
-  { s: '✦', top: '31%', left: '89%', size: '54px', color: 'text-lavender-deep', opacity: 0.5, rot: 16 },
-  { s: '◈', top: '44%', left: '4%', size: '48px', color: 'text-heart', opacity: 0.45, rot: -18 },
-  { s: '✦', top: '39%', left: '26%', size: '40px', color: 'text-lavender', opacity: 0.4, rot: 25 },
-  { s: '◈', top: '47%', left: '58%', size: '38px', color: 'text-lavender-deep', opacity: 0.35, rot: -6 },
-  { s: '✦', top: '54%', left: '82%', size: '46px', color: 'text-heart', opacity: 0.45, rot: 14 },
-  { s: '◈', top: '64%', left: '13%', size: '52px', color: 'text-lavender', opacity: 0.5, rot: -20 },
-  { s: '✦', top: '70%', left: '48%', size: '42px', color: 'text-lavender-deep', opacity: 0.4, rot: 8 },
-  { s: '◈', top: '74%', left: '91%', size: '44px', color: 'text-heart', opacity: 0.45, rot: -26 },
-  { s: '✦', top: '87%', left: '21%', size: '48px', color: 'text-lavender-deep', opacity: 0.45, rot: 18 },
-  { s: '◈', top: '90%', left: '68%', size: '40px', color: 'text-lavender', opacity: 0.4, rot: -10 },
-  { s: '✦', top: '95%', left: '39%', size: '44px', color: 'text-heart', opacity: 0.45, rot: 24 },
-  { s: '◈', top: '93%', left: '6%', size: '38px', color: 'text-lavender-deep', opacity: 0.4, rot: -16 },
+  { s: '✦', top: '3%', left: '7%', size: '48px', color: 'text-lavender', opacity: 0.45, rot: -15 },
+  { s: '✦', top: '5%', left: '54%', size: '40px', color: 'text-lavender-deep', opacity: 0.18, rot: 22 },
+  { s: '◈', top: '13%', left: '78%', size: '44px', color: 'text-lavender', opacity: 0.35, rot: -8 },
+  { s: '◈', top: '23%', left: '15%', size: '46px', color: 'text-lavender-deep', opacity: 0.5, rot: -22 },
+  { s: '✦', top: '28%', left: '43%', size: '34px', color: 'text-heart', opacity: 0.15, rot: 10 },
+  { s: '✦', top: '31%', left: '90%', size: '42px', color: 'text-heart', opacity: 0.4, rot: 16 },
+  { s: '◈', top: '45%', left: '4%', size: '40px', color: 'text-heart', opacity: 0.25, rot: -18 },
+  { s: '✦', top: '54%', left: '83%', size: '44px', color: 'text-lavender-deep', opacity: 0.45, rot: 14 },
+  { s: '◈', top: '65%', left: '13%', size: '38px', color: 'text-lavender', opacity: 0.3, rot: -20 },
+  { s: '✦', top: '71%', left: '49%', size: '36px', color: 'text-lavender-deep', opacity: 0.2, rot: 8 },
+  { s: '◈', top: '89%', left: '69%', size: '42px', color: 'text-lavender', opacity: 0.4, rot: -10 },
+  { s: '✦', top: '93%', left: '22%', size: '38px', color: 'text-heart', opacity: 0.25, rot: 20 },
 ]
 
 export default function About() {
