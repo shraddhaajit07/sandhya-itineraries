@@ -11,7 +11,7 @@ export default function NavBar() {
     <header className="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 sm:px-10">
         <NavLink to="/" className="font-display text-3xl text-ink sm:text-4xl">
-          Sandhya Kollath
+          Sandhya Ajit
         </NavLink>
         <div className="flex items-center gap-6 font-semibold text-base text-ink sm:gap-10 sm:text-lg">
           {links.map((link) => (
