@@ -88,12 +88,12 @@ export default function About() {
             {/* contacts */}
             <div className="space-y-1.5 text-center text-sm">
               <a
-                href="https://instagram.com/sandhya.kollath"
+                href="https://www.facebook.com/sandhya.ajit.3"
                 target="_blank"
                 rel="noreferrer"
                 className="block font-semibold text-ink/70 underline decoration-ink/25 underline-offset-2 transition-colors hover:text-lavender-deep hover:decoration-lavender-deep"
               >
-                ig: @sandhya.kollath
+                facebook: sandhya ajit
               </a>
               <a
                 href="mailto:sandhya.ajit@gmail.com"
